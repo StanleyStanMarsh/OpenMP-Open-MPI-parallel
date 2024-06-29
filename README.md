@@ -2,7 +2,9 @@
 
 ## ALT Linux
 
-In ALT Linux, the apt program is used to install packages.
+![image](https://github.com/StanleyStanMarsh/OpenMP-Open-MPI-parallel/assets/96591356/23f5195f-6a77-4fd7-bc86-41a3ec893d2b)
+
+In ALT Linux, the `apt` program is used to install packages.
 
 Before installing packages, it is necessary to synchronize the package list with remote repositories by executing the command:
 
@@ -69,7 +71,9 @@ scp -P <port> -r "<path_to_file>" <username>@localhost:<path_in_virtual_machine>
 ```
 
 ## OpenMP
-There are many types of parallel computing systems – multicore/multiprocessor computers, clusters, video card systems, programmable integrated circuits and others. The OpenMP library is suitable for programming systems with shared memory, while using thread parallelism. Threads are created within a single process and have their own memory. All threads have access to the process memory.
+There are many types of parallel computing systems â€“ multicore/multiprocessor computers, clusters, video card systems, programmable integrated circuits and others. The OpenMP library is suitable for programming systems with shared memory, while using thread parallelism. Threads are created within a single process and have their own memory. All threads have access to the process memory.
+
+![image](https://github.com/StanleyStanMarsh/OpenMP-Open-MPI-parallel/assets/96591356/c8d46909-c82d-4197-a00e-9be21b531afe)
 
 To work with the OpenMP library, it's necessary to include the header file `omp.h` and activate the `-fopenmp` compilation option when using the gcc compiler. Initially, the program begins with executing code sequentially until it encounters a parallel section.
 
@@ -114,6 +118,8 @@ MIMD is a model in which each processor can execute different instructions indep
 
 Unlike MIMD, in the SPMD model, all processors execute the same program, although on different parts of the data. This simplifies programming and program management, as only one program code needs to be maintained.
 
+![image](https://github.com/StanleyStanMarsh/OpenMP-Open-MPI-parallel/assets/96591356/d228442b-6610-4a47-872a-9bc29582ece2)
+
 In this work, the SPMD approach is used as it is required to parallelize a single existing program.
 
 To use Open MPI, you must include the header file `mpi.h`. The following MPI library functions and macros were used in this work:
@@ -126,7 +132,7 @@ To use Open MPI, you must include the header file `mpi.h`. The following MPI lib
 
 - `MPI_Send()` is a function used to send a message from one process to another within an MPI program. It is one of the fundamental functions for sending data between processes. The function blocks the execution of the program until the sent data is copied into the system buffer (making it available for sending), or until the message is directly received by the recipient (depending on the MPI implementation and message size). This behavior is called blocking send because the execution of the program is paused during the transfer operation. This ensures that the data does not change during transmission and that the buffer can be safely used after returning from `MPI_Send()`.
 
-- `MPI_Recv()` is a function for receiving messages sent by other processes in an MPI program. It’s the primary function for receiving data, allowing a process to wait and receive data from other processes in a distributed system. The function blocks the execution of the program until a message is received that meets the specified criteria (matching source, tag, and communicator). This is called a blocking receive because the process halts its execution, waiting for data from the sender.
+- `MPI_Recv()` is a function for receiving messages sent by other processes in an MPI program. Itâ€™s the primary function for receiving data, allowing a process to wait and receive data from other processes in a distributed system. The function blocks the execution of the program until a message is received that meets the specified criteria (matching source, tag, and communicator). This is called a blocking receive because the process halts its execution, waiting for data from the sender.
 
 - `MPI_Probe()` is a function used to check for the arrival of a message without actually receiving it. This allows a process to determine the presence of an incoming message and obtain information about it, which can be useful for dynamically handling data of various sizes or preparing resources before the actual receipt of the message.
 
@@ -138,6 +144,6 @@ The original program was modified so that the process with rank 0 splits the fil
 
 ## Sources
 
-[ALT Linux Wiki](https://en.altlinux.org/Main_Page)
-[OpenMP docs](https://www.openmp.org/spec-html/5.0/openmp.html)
-[Open MPI docs](https://docs.open-mpi.org/en/v5.0.x/)
+- [ALT Linux Wiki](https://en.altlinux.org/Main_Page)
+- [OpenMP docs](https://www.openmp.org/spec-html/5.0/openmp.html)
+- [Open MPI docs](https://docs.open-mpi.org/en/v5.0.x/)
